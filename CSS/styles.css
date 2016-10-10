@@ -65,8 +65,9 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .detailedRowData td:first-of-type {color: #EEDC93 ;  text-align :right; padding: 5px; width: 35%; }
 .detailedRowData td:last-of-type { background: #FCF0BE; color: #262007; padding: 3px;  width: 65%; }
 
-.promptingWindow { width: 100%; height: 100px; background: #EEF0D0 ; position: absolute; z-index: 10; border: 1px solid black; }
-
+.promptingWindow { width: 100%; background: #EEF0D0 ; position: absolute; z-index: 10; border: 1px solid black; padding: 10px;
+	max-height: 200px; overflow: auto; }
+.promptingWindow > p { margin-bottom: 5px; cursor: pointer; color: # 5B2C32; }
 
 
 
