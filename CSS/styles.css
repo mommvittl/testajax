@@ -1,0 +1,79 @@
+/* сброс стилей браузера */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong,  tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.2; 
+}
+ol { 
+	padding-left: 1.4em;
+	list-style: decimal;
+}
+ul {
+	padding-left: 1.4em;
+	list-style: square;
+}
+p { word-wrap: break-word;}
+* {  box-sizing: border-box;}
+/* конец кода сброса стилей браузера */
+body { background:#FDF5E6; position: relative; }
+h1 { font: 1.5em/1.2em Arial; text-align: center; }
+/* пользовательские стили */
+.out_div { width: 100%; max-width: 1200px; margin: 0 auto;}
+.out_div header { padding: 30px; height: 150px; background: url(../IMG/header_logo.jpg) center center / cover  ; }
+.out_div h1 { font: 2em/2.5em arial; color: #FAEBD7; }
+.detailed_list { width: calc(50% - 5px); float: left; margin-top: 5px; }
+.total_list { width: calc(50% - 5px); float: right;   margin-top: 5px;}
+.nav { display: table-row; width: 100%; text-align: justify; background: #DEB887; cursor: pointer;}
+.nav span {width: auto; display: table-cell; text-align: center; padding: 5px; border-left: 1px solid black;}
+.nav span:first-of-type { border-left: none;}
+.nav span span {width: 1000px; display: table-cell; text-decoration: none; font: 1em arial; color: #A52A2A; }
+/*стили total */
+.tableclass { width: 100%; font: 1em/1.2em arial; border-spacing: 1px; 
+	background: #BDB76B; padding: 5px; }
+#detailed {  margin-top: 5px;  background: #BDB76B;}	
+#total {  margin-top: 5px; background: #F5DEB3;}	
+.trclass td {width: 200px; border: 1px solid black; padding: 4px; cursor: pointer;
+	vertical-align: middle; background: #FFEBCD; color: #A52A2A;}
+.tableclass th { color: #FAFAD2; }   
+/*стили detalied */
+
+.detaliedstring { font: font: 1.2em/1.5em arial; padding: 2px; }
+.detaliedstring > span:first-of-type { display: inline-block; color: #FAFAD2;width: calc(50% - 10px); text-align: right; padding: 5px;}
+.detaliedstring  span:last-of-type {width: calc(50% - 10px); background: #FFEBCD; color: #A52A2A;padding: 5px;}
+
+.out_div header { position: relative; }
+.globalSearch {  position: relative; float: right; }
+.globalSearch input[type="text"] { height: 30px; max-width: 80%; width: 500px; border: none; outline: none; border-radius: 12px 0 0 12px; color: black; padding: 0 10px; margin-right: -5px;}
+.globalSearch input[type="submit"] {height: 30px; width: 60px; border: none; outline: none; border-radius: 0 12px 12px 0; color: white; background: gray;  margin: 0; }
+
+.totalTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; }
+.totalTable th { color: #EEDC93 ; font: 1.3em/1.5em arial;  }
+.totalRowData td { cursor: pointer; background: #FCF0BE; color: #262007; padding: 3px; vertical-align: middle;  }
+
+.detailedTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; vertical-align: middle;font: 1.3em/1.5em arial;}
+.detailedRowData td:first-of-type {color: #EEDC93 ;  text-align :right; padding: 5px; width: 35%; }
+.detailedRowData td:last-of-type { background: #FCF0BE; color: #262007; padding: 3px;  width: 65%; }
+
+.promptingWindow { width: 100%; height: 100px; background: #EEF0D0 ; position: absolute; z-index: 10; border: 1px solid black; }
+
+
+
+
+
+
+
+
+
+
+
