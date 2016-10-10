@@ -45,9 +45,12 @@ function getDetaliedPromptingInfo(){
 };
 //-----------------------------------------------------------------
 function searchFormSubmit(){
-//	document.getElementById('result').innerHTML = searchData.value;
 	promptingWindow.hidden = true;
-	alert("submit");
+	var searchDataValue = searchData.value;
+	searchData.value = "";	
+	var theUrl = "PHP/staff_list.php";
+	var theParam = "functionHandler=viewAllstaff&searchList=searchl&surnameSearch="+searchDataValue;	
+	setAjaxQuery(theUrl,theParam);		
 	return false;
 }
 //---------------------------------------------------------------------
