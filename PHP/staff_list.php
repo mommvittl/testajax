@@ -27,8 +27,6 @@ switch ($searchList){
 	case 'optionsToSelect':
 		$xmlString = myf_get_departament($funct,$db);
 		break;	
-	
-	
 	default :
 		$xmlString = myf_inform_xml("Неопределенный запрос. Нужно подготовить
 			соответствующую функцию обработки...");
@@ -52,8 +50,7 @@ function myf_get_departament($funct,$db){
 			$new_element = $dom->createElement($key,$val);
 			$staff->appendChild($new_element);
 		}	
-	}
-	
+	}	
 	$functionHandler = $dom->createElement('functionHandler',$funct);
 	$response->appendChild($functionHandler);
 	$xmlString = $dom->saveXML();
@@ -163,6 +160,7 @@ function myf_get_allstaff_xml($funct,$db){
 	$xmlString = $dom->saveXML();
 	return $xmlString;
 }
+//ф-я возврата документа xml <error>
 function myf_err_xml($str_error){
 	$dom_err = new DOMDocument();
 	$error = $dom_err->createElement('error',$str_error);
@@ -170,6 +168,7 @@ function myf_err_xml($str_error){
 	$xmlErrStr = $dom_err->saveXML();
 	return $xmlErrStr;
 }
+//ф-я возврата документа xml <underreporting>
 function myf_inform_xml($str_inform){
 	$dom_inform = new DOMDocument();
 	$inform = $dom_inform->createElement('underreporting',$str_inform);

@@ -47,16 +47,16 @@ function getAddPersonalStaff(){
 };
 //вывод значений options для selecta отдел
 function addOptionsToSelect(){
-	var optionsToSelect = "";
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
 	var departament = document.forms.formAddStaff.elements.departament;
+	departament.innerHTML = "";
 	for (var i = 0; i < nextStaff.length; i++){
 		var option = document.createElement('option');
 		option.textContent = nextStaff[i].getElementsByTagName('title')[0].textContent;
 		option.value = nextStaff[i].getElementsByTagName('id_dep')[0].textContent;
 		departament.appendChild(option);
 	}
-}
+}//Передача введеных в форму значений на обработку на сервер
 function addFormSubmit(){
 	var theUrl = "PHP/add_staff.php";
 	var theParam = "functionHandler=viewAddPersonalStaff";	

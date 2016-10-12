@@ -47,10 +47,10 @@
 		<form class="formAddStaff" name="formAddStaff" action="PHP/add_staff.php" method="post">
 		<input type="button" value="отмена" name="formAddClose"></input>
 		<h2>Внесите данные нового сотрудника</h2><hr>
-		<p><span>имя</span><input type="text" name="name" ></input></p>
-		<p><span>фамилия</span><input type="text" name="surname" ></input></p>
-		<p><span>дата рождения</span><input type="date" name="birth_day" ></input></p>
-		<p><span>адрес</span><input type="text" name="adress" ></input></p>
+		<p><span>имя</span><input type="text" name="name" required></input></p>
+		<p><span>фамилия</span><input type="text" name="surname" required></input></p>
+		<p><span>дата рождения</span><input type="date" name="birth_day" required></input></p>
+		<p><span>адрес</span><input type="text" name="adress" required></input></p>
 		<p><span>Email</span><input type="email" name="email" ></input></p>
 		<p><span>Телефон</span><input type="text" name="telephon" ></input></p>
 		<p><span>Резюме</span><input type="text" name="resume" ></input></p>
