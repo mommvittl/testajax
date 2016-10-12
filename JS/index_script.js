@@ -40,11 +40,23 @@ function getAddPersonalStaff(){
 	viewAddStaff.hidden = "";
 	var formAddStaff = document.forms.formAddStaff;
 	formAddStaff.onsubmit = addFormSubmit;
-	
+	setAjaxQuery("PHP/staff_list.php","functionHandler=addOptionsToSelect&searchList=optionsToSelect");
 //	var theUrl = "PHP/staff_list.php";
 //	var theParam = "functionHandler=viewAddPersonalStaff&searchList=add";	
 //	setAjaxQuery(theUrl,theParam);	
 };
+//вывод значений options для selecta отдел
+function addOptionsToSelect(){
+	var optionsToSelect = "";
+	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
+	var departament = document.forms.formAddStaff.elements.departament;
+	for (var i = 0; i < nextStaff.length; i++){
+		var option = document.createElement('option');
+		option.textContent = nextStaff[i].getElementsByTagName('title')[0].textContent;
+		option.value = nextStaff[i].getElementsByTagName('id_dep')[0].textContent;
+		departament.appendChild(option);
+	}
+}
 function addFormSubmit(){
 	var theUrl = "PHP/add_staff.php";
 	var theParam = "functionHandler=viewAddPersonalStaff";	

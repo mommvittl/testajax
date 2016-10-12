@@ -54,10 +54,10 @@
 		<p><span>Email</span><input type="email" name="email" ></input></p>
 		<p><span>Телефон</span><input type="text" name="telephon" ></input></p>
 		<p><span>Резюме</span><input type="text" name="resume" ></input></p>
-		<p><span>Отдел</span><input type="text" name="departament" ></input></p>
+		<p><span>Отдел</span><select name="departament" ></select></p>
 		<p><span>Должность</span><input type="text" name="position" ></input></p>
 		<p><span>Дата приема</span><input type="date" name="enrolment_data" ></input></p>
-		<p><input type="reset"></input><input type="submit" name="addGo" value="Добавить"></input></p>
+		<p><input type="reset" name="butreset"></input><input type="submit" name="addGo" value="Добавить"></input></p>
 	</form>
 	</div>
 	</div>

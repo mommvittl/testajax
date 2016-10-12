@@ -20,16 +20,45 @@ switch ($searchList){
 		$searchValue = trim($_POST['searchValue']);
 		$xmlString = myf_get_prompting_xml($funct,$db,$searchValue);
 		break;	
-	case 'search':
+		case 'search':
 		$surnameSearch = trim($_POST['surnameSearch']);
 		$xmlString = myf_get_search_xml($funct,$db,$surnameSearch);
+		break;			
+	case 'optionsToSelect':
+		$xmlString = myf_get_departament($funct,$db);
 		break;	
+	
+	
 	default :
 		$xmlString = myf_inform_xml("Неопределенный запрос. Нужно подготовить
 			соответствующую функцию обработки...");
 		break;
 }
 exit($xmlString);
+//ф-я возврата списка отделов для формы AddStaff
+function myf_get_departament($funct,$db){
+	$dom = new DOMDocument();
+	$response = $dom->createElement('response');
+	$dom->appendChild($response);
+	
+	$str_query = "select id_dep,title from departament ;";
+	$result =  $db->query($str_query);
+	$num_rows = $result->num_rows;
+	for($i=0; $i<$num_rows; $i++){		
+		$row = $result->fetch_assoc();
+		$staff = $dom->createElement('nextStaff');
+		$response->appendChild($staff);
+		foreach($row as $key=>$val){
+			$new_element = $dom->createElement($key,$val);
+			$staff->appendChild($new_element);
+		}	
+	}
+	
+	$functionHandler = $dom->createElement('functionHandler',$funct);
+	$response->appendChild($functionHandler);
+	$xmlString = $dom->saveXML();
+	return $xmlString;
+}
 //---------------------------------------------------------------------
 function myf_get_search_xml($funct,$db,$surnameSearch){
 		$dom = new DOMDocument();
