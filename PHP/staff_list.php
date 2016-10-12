@@ -20,7 +20,7 @@ switch ($searchList){
 		$searchValue = trim($_POST['searchValue']);
 		$xmlString = myf_get_prompting_xml($funct,$db,$searchValue);
 		break;	
-	case 'searchl':
+	case 'search':
 		$surnameSearch = trim($_POST['surnameSearch']);
 		$xmlString = myf_get_search_xml($funct,$db,$surnameSearch);
 		break;	
@@ -35,7 +35,7 @@ function myf_get_search_xml($funct,$db,$surnameSearch){
 		$dom = new DOMDocument();
 	$response = $dom->createElement('response');
 	$dom->appendChild($response);	
-	$str_query = "select * from staff_inform WHERE work='1' and surname='".$surnameSearch."';";
+	$str_query = "select * from staff_inform WHERE work='1' AND surname like('".$surnameSearch."%');";
 	$result = $db->query($str_query);
 	if(!$result){ exit(myf_err_xml("Не удалось соединиться с Базой данных")); } ;
 	$num_rows = $result->num_rows;

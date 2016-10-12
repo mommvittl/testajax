@@ -49,7 +49,7 @@ function searchFormSubmit(){
 	var searchDataValue = searchData.value;
 	searchData.value = "";	
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewAllstaff&searchList=searchl&surnameSearch="+searchDataValue;	
+	var theParam = "functionHandler=viewAllstaff&searchList=search&surnameSearch="+searchDataValue;	
 	setAjaxQuery(theUrl,theParam);		
 	return false;
 }

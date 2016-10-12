@@ -69,12 +69,18 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 	max-height: 200px; overflow: auto; }
 .promptingWindow > p { margin-bottom: 5px; cursor: pointer; color: # 5B2C32; }
 
-
-
-
-
-
-
+.viewAddStaff { border: 1px solid black; background: #F5F6CE; clear: both; width:800px; max-width: 100%; 
+	padding: 10px; border-radius: 10px; }
+.formAddStaff > p { margin-bottom: 5px;  }
+.formAddStaff  input { padding: 4px 10px; outline: none; border: none; background: #548E70; border-radius: 8px; 
+	color: #F5F5C8; width: 300px; }
+.formAddStaff  >p > span { display: inline-block; width: 300px; text-align: right; padding: 4px; font: 1.2em/1.5em arial;
+	color: #548E70;}
+.formAddStaff h2 { font: 1.4em/1.8em arial; color: #8E8D65; text-align: center;}
+.formAddStaff input[type="reset"], .formAddStaff input[type="submit"] { padding: 5px 10px; width: auto; margin-left: 20px; margin-right: 20px; cursor: pointer; background: #c0c0c0;}
+.formAddStaff input[type="submit"] { background: #FE2E2E; }
+.formAddStaff input[type="button"] { background: #FE2E2E; cursor: pointer; float: right; padding: 3px 10px; width: auto; }
+.formAddStaff > p:last-child { text-align: center;}
 
 
 
