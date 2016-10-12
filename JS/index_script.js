@@ -50,7 +50,7 @@ function addOptionsToSelect(){
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
 	var departament = document.forms.formAddStaff.elements.departament;
 	departament.innerHTML = "";
-	for (var i = 0; i < nextStaff.length; i++){
+	for (var i = nextStaff.length -1; i >= 0 ; i--){
 		var option = document.createElement('option');
 		option.textContent = nextStaff[i].getElementsByTagName('title')[0].textContent;
 		option.value = nextStaff[i].getElementsByTagName('id_dep')[0].textContent;
