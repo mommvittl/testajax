@@ -29,7 +29,7 @@
 	<div id="detailedNav"><nav class="nav">
 		<span><span id="changePersonalStaff">редактировать</span></span>
 		
-		<span><span id="deletePersonalStaff">удалить</span></span>
+		<span><span id="deletePersonalStaff" class="intercep">увольнение</span></span>
 	</nav></div>
 	<div id="detailed">	
 	</div>

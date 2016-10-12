@@ -23,14 +23,31 @@ var viewAddStaff = document.getElementById('viewAddStaff');
 viewAddStaff.hidden = true;
 
 //=====DELETE===Staff======================================================
-
-
-function getDeletePersonalStaff(){
-	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewDeletePersonalStaff&searchList=delete";	
-	setAjaxQuery(theUrl,theParam);	
+function getDeletePersonalStaff(){		
+		var modal = document.createElement('div');  		
+		modal.innerHTML = "<h1>Вы уверены, что хотите уволить сотрудника?</h1><br><br><button id=\"ok_but\">OK</button><button id=\"cancel_but\" autofocus>Cancel</button></p>";
+		document.body.insertBefore(modal, document.body.firstChild);	
+		var ok_but = document.getElementById('ok_but');
+		var cancel_but = document.getElementById('cancel_but');	
+		modal.style.cssText="width:700px; max-width: 100%; padding:50px 30px; background:#F4A460; color:#800000; text-align:center; font: 1em/2em arial; border: 4px solid #A52A2A; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);";
+		ok_but.style.cssText="border-radius:10px; padding: 10px 20px; background:#FFE4E1; cursor:pointer; outline:none; margin-right: 20px;";
+		cancel_but.style.cssText="border-radius:10px; padding: 10px 20px; background:#F5F5DC; cursor:pointer; outline:none; margin-left: 20px;";			
+		cancel_but.onclick = function() 
+			{ document.body.removeChild(modal); };			
+		ok_but.onclick = function() 
+			{
+			document.body.removeChild(modal);		
+			var deleteStaffId = document.getElementById('detailed').getAttribute("idStaffSelect");
+			var theUrl = "PHP/delete_staff.php";
+			var theParam = "functionHandler=viewDeletePersonalStaff&searchList=delete&deleteStaffId=" + deleteStaffId;	
+			setAjaxQuery(theUrl,theParam);
+			var detailed = document.getElementById('detailed');
+			detailed.innerHTML = "";
+			detailedNav.hidden = true;		
+			};		
 };
 function viewDeletePersonalStaff(responseXMLDocument){
+	var detailed = document.getElementById('detailed');
 	alert("viewDeletePersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
@@ -41,9 +58,6 @@ function getAddPersonalStaff(){
 	var formAddStaff = document.forms.formAddStaff;
 	formAddStaff.onsubmit = addFormSubmit;
 	setAjaxQuery("PHP/staff_list.php","functionHandler=addOptionsToSelect&searchList=optionsToSelect");
-//	var theUrl = "PHP/staff_list.php";
-//	var theParam = "functionHandler=viewAddPersonalStaff&searchList=add";	
-//	setAjaxQuery(theUrl,theParam);	
 };
 //вывод значений options для selecta отдел
 function addOptionsToSelect(){
@@ -65,7 +79,6 @@ function addFormSubmit(){
 		var tagdt = document.forms.formAddStaff.elements[i].value;
 		theParam += "&" + tagnm + "=" + tagdt;		
 	}	
-	alert(theParam);
 	setAjaxQuery(theUrl,theParam);
 	viewAddStaff.hidden = true;
 	return false;
@@ -131,7 +144,7 @@ function viewAllstaff(responseXMLDocument){
 		row.appendChild(td);
 	}
 }
-//========GET===Htrsonal===Staff=============================================================================
+//========GET===Personal===Staff=============================================================================
 function getDetaliedStaffInfo(){
 	var id = this.getAttribute('idStaff');
 	var theUrl = "PHP/staff_list.php";
@@ -148,7 +161,9 @@ function viewDetaliedStaffInfo(responseXMLDocument){
 	table.className = "detailedTable";
 	detailed.appendChild(table);
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];
-	
+	var idStaffSelect = responseXMLDocument.getElementsByTagName('id_staff')[0].textContent;
+	detailed.setAttribute("idStaffSelect", idStaffSelect);
+//	alert(detailed.getAttribute("idStaffSelect") );
 	for (var i = 0; i < nextStaff.childNodes.length; i++){		
 		var newTag = nextStaff.childNodes[i];
 		if(newTag.tagName != 'id_staff' && newTag.tagName != 'work'){

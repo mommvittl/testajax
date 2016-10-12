@@ -111,7 +111,7 @@ function myf_get_personalstaff_xml($funct,$db,$id){
 	$dom = new DOMDocument();
 	$response = $dom->createElement('response');
 	$dom->appendChild($response);	
-	$str_query = "select staff_inform.name,staff_inform.surname,staff_inform.birth_day, staff_inform.adress,
+	$str_query = "select staff_inform.id_staff,staff_inform.name,staff_inform.surname,staff_inform.birth_day, staff_inform.adress,
 		staff_inform.email,staff_inform.telephon,staff_inform.resume,staff_working.position,
 		staff_working.enrolment_data,staff_working.reference,departament.title	from staff_inform,staff_working,departament WHERE staff_inform.id_staff='".$id."' 
 		AND staff_working.id_worker = staff_inform.id_staff	AND staff_working.departament = departament.id_dep ;";
