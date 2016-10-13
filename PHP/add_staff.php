@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: text/XML');
 require_once("app_config.php");
+require_once("php_user_funktion.php");
 $funct = trim($_POST['functionHandler']);
 $name = trim($_POST['name']);
 $surname = trim($_POST['surname']);
@@ -56,21 +57,5 @@ function myf_find_staff($db,$name,$surname,$birth_day){
 	$result = $db->query($str_query);
 	list($col) = $result->fetch_row();
 	return ($col)?true:false;
-}
-//ф-я возврата документа xml <error>
-function myf_err_xml($str_error){
-	$dom_err = new DOMDocument();
-	$error = $dom_err->createElement('error',$str_error);
-	$dom_err->appendChild($error);
-	$xmlErrStr = $dom_err->saveXML();
-	return $xmlErrStr;
-}
-//ф-я возврата документа xml <underreporting>
-function myf_inform_xml($str_inform){
-	$dom_inform = new DOMDocument();
-	$inform = $dom_inform->createElement('underreporting',$str_inform);
-	$dom_inform->appendChild($inform);
-	$xmlInformStr = $dom_inform->saveXML();
-	return $xmlInformStr;
 }
 ?>
