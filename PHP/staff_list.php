@@ -40,6 +40,10 @@ switch ($searchList){
 	case 'optionsToSelect':
 		$str_query = "select id_dep,title from departament ;";
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
+		break;
+	case 'optionsToPosition':
+		$str_query = "select DISTINCT position from staff_working ;";
+		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
 		break;	
 	default :
 		$xmlString = myf_inform_xml("Неопределенный запрос. Нужно подготовить
