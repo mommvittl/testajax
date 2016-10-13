@@ -2,6 +2,7 @@
 header('Content-Type: text/XML');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
+
 $funct = trim($_POST['functionHandler']);
 $name = trim($_POST['name']);
 $surname = trim($_POST['surname']);

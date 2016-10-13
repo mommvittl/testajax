@@ -7,8 +7,7 @@ var departaments =  document.getElementById('departaments');
 departaments.onclick = getDepartaments;
 var allStaff =  document.getElementById('allStaff');
 allStaff.onclick = getAllstaff;
-var findStaff =  document.getElementById('findStaff');
-findStaff.onclick = getFindStaff;
+
 var changePersonalStaff =  document.getElementById('changePersonalStaff');
 changePersonalStaff.onclick = getChangePersonalStaff;
 var addPersonalStaff =  document.getElementById('addPersonalStaff');
@@ -98,16 +97,7 @@ function viewChangePersonalStaff(responseXMLDocument){
 	alert("viewChangePersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
-//=======FIND===Staff====================================================
-function getFindStaff(){
-	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewFindStaff&searchList=find";	
-	setAjaxQuery(theUrl,theParam);	
-};
-function viewFindStaff(responseXMLDocument){
-	alert("viewFindStaff : "+responseXMLDocument.childNodes[0].textContent);	
-}
-//--------------------------------------------------------------
+
 //======GET===All===Staff==================================================
 function getAllstaff(){
 	var theUrl = "PHP/staff_list.php";

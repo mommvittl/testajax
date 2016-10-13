@@ -82,5 +82,16 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .formAddStaff input[type="button"] { background: #FE2E2E; cursor: pointer; float: right; padding: 3px 10px; width: auto; }
 .formAddStaff > p:last-child { text-align: center;}
 
-
-
+.viewFindStaff{ border: 3px solid #2D3C17; background: #BDB76B;  width:960px; max-width: 100%; max-height: 100%;
+	padding: 50px; border-radius: 10px; position:fixed;z-index: 8;top:50%;left:50%;transform:translate(-50%, -50%);}
+.formFindStaff p { margin-bottom: 5px;  }
+.formFindStaff p:first-of-type > span{ font: 1.5em arial; }
+.formFindStaff  input { padding: 4px 10px; outline: none; border: none; background: #F5F5DC; border-radius: 8px; 
+	color: #0F1409; width: 400px; font: 1.2em arial; }
+.formFindStaff   p > span { display: inline-block; width: 300px; text-align: right; padding: 6px; font: 1.3em/1.5em arial; color: #0F1409;}
+.formFindStaff h2 { font: 1.5em/1.7em arial; color: #0F1409; text-align: center;}
+.formFindStaff input[type="reset"], .formFindStaff input[type="submit"] { padding: 5px 10px; width: auto; margin-left: 20px; margin-right: 20px; cursor: pointer; background: #c0c0c0;}
+.formFindStaff input[type="submit"] { background: #FE2E2E; float: right; }
+.formFindStaff input[type="button"] { background: #FE2E2E; cursor: pointer; float: right; padding: 3px 10px; width: auto; }
+.formFindStaff input[type="radio"] {  width: auto;  }
+.formFindStaff label { cursor: pointer; font: 1.3em/1.5em arial; color: #0F1409; }
