@@ -127,7 +127,7 @@ var intercep = document.getElementsByClassName('intercep');
 		if(myReq.status == 200){
 			var theXMLresponseDoc = myReq.responseXML;
 			if (!theXMLresponseDoc || !theXMLresponseDoc.documentElement) {
-				alert("Неверная структура XML.");
+				alert("Неверная структура XML." + myReq.responseText);
 			}else{
 				firstNodeName = theXMLresponseDoc.childNodes[0].tagName;
 				switch (firstNodeName) {

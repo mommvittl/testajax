@@ -73,9 +73,12 @@
 		<p><span>имя</span><input type="text" name="name" ></input></p>
 		<p><span>фамилия</span><input type="text" name="surname" ></input></p>
 		<p><span>дата рождения</span><input type="date" name="birth_day" ></input></p>
-		
+		<p><span>как искать:</span>
+		<label><input type="radio" name="criterionBirthData" value="before" checked></input>до этой даты</label>
+		<label><input type="radio" name="criterionBirthData" value="after"></input>после этой даты</label>
+		<label><input type="radio" name="criterionBirthData" value="really"></input>точно в эту дату</label></p>
 		<p><span>адрес</span><input type="text" name="adress" ></input></p>
-		<p><span>Email</span><input type="email" name="email" ></input></p>
+		<p><span>Email</span><input type="text" name="email" ></input></p>
 		<p><span>Телефон</span><input type="text" name="telephon" ></input></p>
 		<p><span>Отдел</span><select name="departament" ></select></p>
 		<p><span>Должность</span><select name="position" ></select></p>

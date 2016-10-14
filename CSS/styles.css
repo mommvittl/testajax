@@ -86,7 +86,7 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 	padding: 50px; border-radius: 10px; position:fixed;z-index: 8;top:50%;left:50%;transform:translate(-50%, -50%);}
 .formFindStaff p { margin-bottom: 5px;  }
 .formFindStaff p:first-of-type > span{ font: 1.5em arial; }
-.formFindStaff  input { padding: 4px 10px; outline: none; border: none; background: #F5F5DC; border-radius: 8px; 
+.formFindStaff  input { padding: 4px 10px; outline: none; border: none; background: #F5F5DC; 
 	color: #0F1409; width: 400px; font: 1.2em arial; }
 .formFindStaff   p > span { display: inline-block; width: 300px; text-align: right; padding: 6px; font: 1.3em/1.5em arial; color: #0F1409;}
 .formFindStaff h2 { font: 1.5em/1.7em arial; color: #0F1409; text-align: center;}
