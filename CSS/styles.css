@@ -30,12 +30,12 @@ body { background:#FDF5E6; position: relative; }
 h1 { font: 1.5em/1.2em Arial; text-align: center; }
 /* пользовательские стили */
 .out_div { width: 100%; max-width: 1200px; margin: 0 auto;}
-.out_div header { padding: 30px; height: 150px; background: url(../IMG/header_logo.jpg) center center / cover  ; }
-.out_div h1 { font: 2em/2.5em arial; color: #FAEBD7; }
+.out_div header { padding: 10px; height: 100px; background: url(../IMG/header_logo.jpg) center center / cover  ; }
+.out_div h1 { font: 1.5em/1.6em arial; color: #FAEBD7; }
 .detailed_list { width: calc(50% - 5px); float: left; margin-top: 5px; }
 .total_list { width: calc(50% - 5px); float: right;   margin-top: 5px;}
 .nav { display: table-row; width: 100%; text-align: justify; background: #DEB887; cursor: pointer;}
-.nav span {width: auto; display: table-cell; text-align: center; padding: 5px; border-left: 1px solid black;}
+.nav span {width: auto; display: table-cell; text-align: center; padding: 3px; border-left: 1px solid black;}
 .nav span:first-of-type { border-left: none;}
 .nav span span {width: 1000px; display: table-cell; text-decoration: none; font: 1em arial; color: #A52A2A; }
 /*стили total */
@@ -48,7 +48,7 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .tableclass th { color: #FAFAD2; }   
 /*стили detalied */
 
-.detaliedstring { font: font: 1.2em/1.5em arial; padding: 2px; }
+.detaliedstring { font: font: 12em/1.2em arial; padding: 2px; }
 .detaliedstring > span:first-of-type { display: inline-block; color: #FAFAD2;width: calc(50% - 10px); text-align: right; padding: 5px;}
 .detaliedstring  span:last-of-type {width: calc(50% - 10px); background: #FFEBCD; color: #A52A2A;padding: 5px;}
 
@@ -58,40 +58,31 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .globalSearch input[type="submit"] {height: 30px; width: 60px; border: none; outline: none; border-radius: 0 12px 12px 0; color: white; background: gray;  margin: 0; }
 
 .totalTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; }
-.totalTable th { color: #EEDC93 ; font: 1.3em/1.5em arial;  }
+.totalTable th { color: #EEDC93 ; font: 1em/1.2em arial;  }
 .totalRowData td { cursor: pointer; background: #FCF0BE; color: #262007; padding: 3px; vertical-align: middle;  }
 
-.detailedTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; vertical-align: middle;font: 1.3em/1.5em arial;}
+.detailedTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; vertical-align: middle;font: 1em/1.2em arial;}
 .detailedRowData td:first-of-type {color: #EEDC93 ;  text-align :right; padding: 5px; width: 35%; }
 .detailedRowData td:last-of-type { background: #FCF0BE; color: #262007; padding: 3px;  width: 65%; }
 
 .promptingWindow { width: 100%; background: #EEF0D0 ; position: absolute; z-index: 10; border: 1px solid black; padding: 10px;
 	max-height: 200px; overflow: auto; }
 .promptingWindow > p { margin-bottom: 5px; cursor: pointer; color: # 5B2C32; }
+/*------стили----окна--Add---и----Find---------------------*/
+.addFindWindow { border: 1px solid black; background: #778E5A;  width:960px; max-width: 100%; 
+	padding: 10px; border-radius: 10px; position:fixed;z-index: 10;top:50%;left:50%;transform:translate(-50%, -50%);}
+.addFindWindow > button[type="button"] {  background: #D34942; color: #F8F8FF; cursor: pointer; float: right; padding: 3px 10px; 
+	width: auto; border-radius: 10px;  outline: none; border: none; } 
+.addFindWindow h2 { font: 1.3em/1.4em arial; color: #EEF3B8; text-align: center; clear: both;} 	
+.formFindAddStaff >  p { margin-bottom: 5px; font: 1em/1.2em arial; }
+.formFindAddStaff input { padding: 3px 6px; outline: none; border: none; background: #EFF6A7;  
+	color: #3D4118; width: 300px; }	
+.formFindAddStaff input[type="reset"], .formFindAddStaff input[type="submit"] { padding: 5px 10px; width: auto; 
+	 cursor: pointer; background: #c0c0c0;  border-radius: 10px; } 	
+.formFindAddStaff input[type="reset"] { margin-left: 20px; }	
+.formFindAddStaff input[type="submit"] { background: #CA4F30; color: #fff; float: right; margin-right: 30px;  padding: 5px 20px;} 	
+.formFindAddStaff  > p > span { display: inline-block; width: 300px; text-align: right; padding: 0 6px; font: 1em/1.2em arial;
+	color: #D3D997;} 
+.formFindAddStaff input[type="radio"] {  width: auto;  }
+//-------------------------------------------------
 
-.viewAddStaff { border: 1px solid black; background: #F5F6CE;  width:960px; max-width: 100%; 
-	padding: 50px; border-radius: 10px; position:fixed;z-index: 10;top:50%;left:50%;transform:translate(-50%, -50%);}
-.formAddStaff > p { margin-bottom: 5px;  }
-.formAddStaff  input { padding: 4px 10px; outline: none; border: none; background: #548E70; border-radius: 8px; 
-	color: #F5F5C8; width: 300px; }
-.formAddStaff  >p > span { display: inline-block; width: 300px; text-align: right; padding: 4px; font: 1.2em/1.5em arial;
-	color: #548E70;}
-.formAddStaff h2 { font: 1.4em/1.8em arial; color: #8E8D65; text-align: center;}
-.formAddStaff input[type="reset"], .formAddStaff input[type="submit"] { padding: 5px 10px; width: auto; margin-left: 20px; margin-right: 20px; cursor: pointer; background: #c0c0c0;}
-.formAddStaff input[type="submit"] { background: #FE2E2E; }
-.formAddStaff input[type="button"] { background: #FE2E2E; cursor: pointer; float: right; padding: 3px 10px; width: auto; }
-.formAddStaff > p:last-child { text-align: center;}
-
-.viewFindStaff{ border: 3px solid #2D3C17; background: #BDB76B;  width:960px; max-width: 100%; max-height: 100%;
-	padding: 50px; border-radius: 10px; position:fixed;z-index: 8;top:50%;left:50%;transform:translate(-50%, -50%);}
-.formFindStaff p { margin-bottom: 5px;  }
-.formFindStaff p:first-of-type > span{ font: 1.5em arial; }
-.formFindStaff  input { padding: 4px 10px; outline: none; border: none; background: #F5F5DC; 
-	color: #0F1409; width: 400px; font: 1.2em arial; }
-.formFindStaff   p > span { display: inline-block; width: 300px; text-align: right; padding: 6px; font: 1.3em/1.5em arial; color: #0F1409;}
-.formFindStaff h2 { font: 1.5em/1.7em arial; color: #0F1409; text-align: center;}
-.formFindStaff input[type="reset"], .formFindStaff input[type="submit"] { padding: 5px 10px; width: auto; margin-left: 20px; margin-right: 20px; cursor: pointer; background: #c0c0c0;}
-.formFindStaff input[type="submit"] { background: #FE2E2E; float: right; }
-.formFindStaff input[type="button"] { background: #FE2E2E; cursor: pointer; float: right; padding: 3px 10px; width: auto; }
-.formFindStaff input[type="radio"] {  width: auto;  }
-.formFindStaff label { cursor: pointer; font: 1.3em/1.5em arial; color: #0F1409; }

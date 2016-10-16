@@ -41,10 +41,6 @@ if($enrolment_data) {
 	list($year,$month,$day) = explode("-",$enrolment_data);
 	if(!checkdate($month,$day,$year)) { exit(myf_inform_xml("Проверьте правильность вводимых данных.<br>Некорректная дата приема на работу.")); }
 } 
-
-//SELECT * FROM staff_inform,staff_working WHERE 1 and staff_working.departament='7' AND 
-//staff_inform.id_staff=staff_working.`id_worker` ;
-
 $str_query = "select staff_inform.* from staff_inform,staff_working WHERE 1 AND staff_inform.id_staff=staff_working.id_worker ";
 if ($name) { $str_query .= " AND staff_inform.name like('%".$name."%') ";}
 if ($surname) { $str_query .= " AND staff_inform.surname like('%".$surname."%')";}
@@ -83,42 +79,6 @@ if ($enrolment_data) {
 } 
 if ($worked == 'noworked') { $str_query .= " AND staff_inform.work='0' ;"; }	
   else{  $str_query .= " AND work='1' ;";}
-//$str_query = "select * from staff_inform WHERE 1 AND work='1' AND surname like('".$surname."%') ;" ; 
 $xmlString = myf_get_staff_iftorm($funct,$db,$str_query);	
 exit($xmlString);
-
-
-
-exit(myf_inform_xml($str_query));
-//=================================================================================
-//ф-я получения результата поиска и формирования из него xml документа для 
-//возврата клиенту. В случае ошибок возвращает <error> или <underreporting>
-//Если результат запроса есть формирует <response> - корневой тег. Отдельные
-//строки запроса возвр.в тегах <nextStaff>.Внутри <nextStaff> отдельные поля
-//запроса в тегах соотв. именам полей БД.Имя ф-ии обработчика на клиенте передается
-//в теге <functionHandler>.Возвращает строку с XML документом для возврата.
-function myf_get_staff_iftorm($funct,$db,$str_query,$fflag_er="1"){	
-	$dom = new DOMDocument();
-	$response = $dom->createElement('response');
-	$dom->appendChild($response);	
-	$result = $db->query($str_query);
-	if(!$result  && $fflag_er){ return(myf_err_xml("Не удалось соединиться с Базой данных 1")); } ;
-	$num_rows = $result->num_rows;
-	if(!$num_rows  && $fflag_er){ return(myf_inform_xml("По вашему запросу в базе данных 
-		ничего не найдено.")); }	
-	for($i=0; $i<$num_rows; $i++){		
-		$row = $result->fetch_assoc();
-		$staff = $dom->createElement('nextStaff');
-		$response->appendChild($staff);
-		foreach($row as $key=>$val){
-			$new_element = $dom->createElement($key,$val);
-			$staff->appendChild($new_element);
-		}	
-	}
-	$functionHandler = $dom->createElement('functionHandler',$funct);
-	$response->appendChild($functionHandler);
-	$xmlString = $dom->saveXML();
-	return $xmlString;	
-}
-//---------------------------------------------------------------------------------
 ?>

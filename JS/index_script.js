@@ -7,20 +7,22 @@ var departaments =  document.getElementById('departaments');
 departaments.onclick = getDepartaments;
 var allStaff =  document.getElementById('allStaff');
 allStaff.onclick = getAllstaff;
-
 var changePersonalStaff =  document.getElementById('changePersonalStaff');
 changePersonalStaff.onclick = getChangePersonalStaff;
-var addPersonalStaff =  document.getElementById('addPersonalStaff');
-addPersonalStaff.onclick = getAddPersonalStaff;
 var deletePersonalStaff =  document.getElementById('deletePersonalStaff');
 deletePersonalStaff.onclick = getDeletePersonalStaff;
-
 var detailedNav = document.getElementById('detailedNav');
 detailedNav.hidden = true;
 var viewDetal = document.getElementById('viewDetal');
-var viewAddStaff = document.getElementById('viewAddStaff');
-viewAddStaff.hidden = true;
+//var viewAddStaff = document.getElementById('viewAddStaff');
+//viewAddStaff.hidden = true;
 
+var addFindWindow = document.getElementById('addFindWindow');
+addFindWindow.hidden = true;
+
+addFindWindow.setAttribute("destiny", "none");
+addFindWindow.getElementsByTagName('button')[0].onclick = function(){ addFindWindow.hidden = true; }
+var windowForForm = document.getElementById('windowForForm');
 //=====DELETE===Staff======================================================
 function getDeletePersonalStaff(){		
 		var modal = document.createElement('div');  		
@@ -50,43 +52,7 @@ function viewDeletePersonalStaff(responseXMLDocument){
 	alert("viewDeletePersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
-//=======ADD==Staff=====================================================
-function getAddPersonalStaff(){
-	document.forms.formAddStaff.elements.formAddClose.onclick = function(){ viewAddStaff.hidden = true;  }
-	viewAddStaff.hidden = "";
-	var formAddStaff = document.forms.formAddStaff;
-	formAddStaff.onsubmit = addFormSubmit;
-	setAjaxQuery("PHP/staff_list.php","functionHandler=addOptionsToSelect&searchList=optionsToSelect");
-};
-//вывод значений options для selecta отдел
-function addOptionsToSelect(){
-	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
-	var departament = document.forms.formAddStaff.elements.departament;
-	departament.innerHTML = "";
-	for (var i = nextStaff.length -1; i >= 0 ; i--){
-		var option = document.createElement('option');
-		option.textContent = nextStaff[i].getElementsByTagName('title')[0].textContent;
-		option.value = nextStaff[i].getElementsByTagName('id_dep')[0].textContent;
-		departament.appendChild(option);
-	}
-}//Передача введеных в форму значений на обработку на сервер
-function addFormSubmit(){
-	var theUrl = "PHP/add_staff.php";
-	var theParam = "functionHandler=viewAddPersonalStaff";	
-	for( var i = 0; i < document.forms.formAddStaff.elements.length; i++){
-		var tagnm = document.forms.formAddStaff.elements[i].name;
-		var tagdt = document.forms.formAddStaff.elements[i].value;
-		theParam += "&" + tagnm + "=" + tagdt;		
-	}	
-	setAjaxQuery(theUrl,theParam);
-	viewAddStaff.hidden = true;
-	return false;
-};
-function viewAddPersonalStaff(responseXMLDocument){
-	viewAddStaff.hidden = "";
-	alert("viewAddPersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
-}
-//--------------------------------------------------------------
+
 //=====CHANGE==Staff=======================================================
 function getChangePersonalStaff(){
 	var theUrl = "PHP/staff_list.php";
