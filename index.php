@@ -8,7 +8,7 @@
  <BODY>
 	<div class="out_div">
 	<header>
-	<h1>Учет сотрудников компании MY-COMP</h1>
+	<h1>Учет сотрудников компании MY-COMP. Филиал 'central'.</h1>
 	<form class="globalSearch" name="globalSearch" >
 	<p><input type="text" name="searchData" placeholder="фамилия сотрудника" id="ss"></input>
 	<input type="submit" name="searchGo" value="search"></input></p>
@@ -24,20 +24,20 @@
 		<span><span id="findStaff">найти</span></span>
 		<span><span id="addPersonalStaff">добавить</span></span>
 	</nav>
-	<section class="detailed_list">
+	<section class="detailed_list list_staff">
 	<div id="viewDetal">
 	<div id="detailedNav"><nav class="nav">
-		<span><span id="changePersonalStaff">редактировать</span></span>
+		<span><span id="changePersonalStaff">перевод</span></span>
 		
 		<span><span id="deletePersonalStaff" class="intercep">увольнение</span></span>
 	</nav></div>
-	<div id="detailed">	
+	<div id="detailed" class="staf_info_wind">	
 	</div>
 	</div>
 	
 	</section>
-	<section class="total_list">	
-	<div id="total">
+	<section class="total_list list_staff">	
+	<div id="total" class="staf_info_wind">
 	
 	</div>
 	</section>

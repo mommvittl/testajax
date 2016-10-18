@@ -32,8 +32,10 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .out_div { width: 100%; max-width: 1200px; margin: 0 auto;}
 .out_div header { padding: 10px; height: 100px; background: url(../IMG/header_logo.jpg) center center / cover  ; }
 .out_div h1 { font: 1.5em/1.6em arial; color: #FAEBD7; }
-.detailed_list { width: calc(50% - 5px); float: left; margin-top: 5px; }
-.total_list { width: calc(50% - 5px); float: right;   margin-top: 5px;}
+.list_staff {   width: calc(50% - 5px); margin-top: 5px; }
+.staf_info_wind { max-height: 75vh; overflow: auto; border: 2px solid #A88808; }
+.detailed_list { float: left;  }
+.total_list {  float: right;  }
 .nav { display: table-row; width: 100%; text-align: justify; background: #DEB887; cursor: pointer;}
 .nav span {width: auto; display: table-cell; text-align: center; padding: 3px; border-left: 1px solid black;}
 .nav span:first-of-type { border-left: none;}
@@ -57,6 +59,7 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .globalSearch input[type="text"] { height: 30px; max-width: 80%; width: 500px; border: none; outline: none; border-radius: 12px 0 0 12px; color: black; padding: 0 10px; margin-right: -5px;}
 .globalSearch input[type="submit"] {height: 30px; width: 60px; border: none; outline: none; border-radius: 0 12px 12px 0; color: white; background: gray;  margin: 0; }
 
+.detailedFilialStaff { text-align: center; color: #FFFACD; background: #A88808; font: 1em/1.2em arial; }
 .totalTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; }
 .totalTable th { color: #EEDC93 ; font: 1em/1.2em arial;  }
 .totalRowData td { cursor: pointer; background: #FCF0BE; color: #262007; padding: 3px; vertical-align: middle;  }
@@ -64,6 +67,11 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .detailedTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; vertical-align: middle;font: 1em/1.2em arial;}
 .detailedRowData td:first-of-type {color: #EEDC93 ;  text-align :right; padding: 5px; width: 35%; }
 .detailedRowData td:last-of-type { background: #FCF0BE; color: #262007; padding: 3px;  width: 65%; }
+.detailedTable  .detailedRowData .reference { background: transparent;  }
+.reference button[type="button"] {  background: #DEB887; color: #A52A2A; cursor: pointer;  padding: 3px 10px; 
+	width: auto; border-radius: 10px;  outline: none; border: none; }  
+
+.reference button[type="button"]:last-of-type { float: right; }
 
 .promptingWindow { width: 100%; background: #EEF0D0 ; position: absolute; z-index: 10; border: 1px solid black; padding: 10px;
 	max-height: 200px; overflow: auto; }
@@ -84,5 +92,27 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .formFindAddStaff  > p > span { display: inline-block; width: 300px; text-align: right; padding: 0 6px; font: 1em/1.2em arial;
 	color: #D3D997;} 
 .formFindAddStaff input[type="radio"] {  width: auto;  }
+.windowForForm {  max-height: 60vh; overflow: auto;  clear: both; min-height: 50vh;   }
+
+.changePersonal   {  font: 1.2em/1.4em arial;    }
+.changePersonal p span { display: inline-block; width: 50%; padding: 10px;}
+.changePersonal p span:first-child { text-align: right; color: #AEB404; }
+.changePersonal p  span:last-child {  color: #FFFACD; }
+.changePersonal input[type="reset"], .changePersonal input[type="submit"] { padding: 5px 10px; width: auto; 
+	 cursor: pointer; background: #c0c0c0;  border-radius: 10px; outline: none; border: none; } 	
+.changePersonal input[type="reset"] { margin-left: 20px; }	
+.changePersonal input[type="submit"] { background: #CA4F30; color: #fff; float: right; margin-right: 30px;  padding: 5px 20px;} 	
+
+.viewReferenseStaff { color: #FFFACD; padding: 10px; }
 //-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 

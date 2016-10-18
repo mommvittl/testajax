@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: text/XML');
+header(' Cache-Control: no-cache');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
 
@@ -7,20 +8,21 @@ require_once("php_user_funktion.php");
 if (mysqli_connect_errno()) { 
 	exit(myf_err_xml("Не удалось соединиться с Базой данных"));
 }
-$funct = trim($_POST['functionHandler']);
-$arealSearch = trim($_POST['arealSearch']);
-$name = trim($_POST['name']);
-$surname = trim($_POST['surname']);
-$birth_day = trim($_POST['birth_day']);
-$criterionBirthData = trim($_POST['criterionBirthData']);
-$adress = trim($_POST['adress']);
-$email = trim($_POST['email']);
-$telephon = trim($_POST['telephon']);
-$departament = (int)trim($_POST['departament']);
-$position = trim($_POST['position']);
-$enrolment_data = trim($_POST['enrolment_data']);
-$criterionData = trim($_POST['criterionData']);
-$worked = trim($_POST['worked']);
+$funct = trim($_GET['functionHandler']);
+$stopSearch = trim($_GET['stopSearch']);
+$arealSearch = trim($_GET['arealSearch']);
+$name = trim($_GET['name']);
+$surname = trim($_GET['surname']);
+$birth_day = trim($_GET['birth_day']);
+$criterionBirthData = trim($_GET['criterionBirthData']);
+$adress = trim($_GET['adress']);
+$email = trim($_GET['email']);
+$telephon = trim($_GET['telephon']);
+$departament = (int)trim($_GET['departament']);
+$position = trim($_GET['position']);
+$enrolment_data = trim($_GET['enrolment_data']);
+$criterionData = trim($_GET['criterionData']);
+$worked = trim($_GET['worked']);
 if( empty($funct) && empty($name) && empty($surname) && empty($birth_day) && empty($adress) && empty($email) && empty($telephon)
 	&& empty($departament) && empty($position) && empty($enrolment_data)  && empty($worked)){
 		 exit(myf_inform_xml("Проверьте правильность вводимых данных.<br>Нет критериев поиска."));
@@ -77,8 +79,54 @@ if ($enrolment_data) {
 	}
 	$str_query .= " AND staff_working.enrolment_data".$criterion_search."'".$enrolment_data."'";
 } 
-if ($worked == 'noworked') { $str_query .= " AND staff_inform.work='0' ;"; }	
+if ($worked == 'noworked') { $str_query .= " AND staff_inform.work='0' ORDER BY name;"; }	
   else{  $str_query .= " AND work='1' ;";}
-$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);	
-exit($xmlString);
+if ($arealSearch == 'raund') { $fflag_er = "0"; }
+  else {  $fflag_er = "1"; }
+$xmlString = myf_get_staff_iftorm($funct,$db,$str_query, $fflag_er);
+if ($arealSearch != 'raund' ) { exit($xmlString); }
+
+//Если задан параметр arealSearch = raund - ищем на филиалах.
+if (($arealSearch) == 'raund' && ($stopSearch != 'stop')){
+	$query_param = $_SERVER['QUERY_STRING'];
+	$query_param .= "&stopSearch=stop";
+	$url = "ajax/www/PHP/find_staff.php";
+	$result = get_web_page( $url,$query_param );
+	if (($result['errno'] == 0 ) && ($result['http_code'] == 200)) {$page = $result['content']; }
+		else{$page =  myf_inform_xml("Ошибка при обращении к серверу филиала...<br>Данные филиала получить не удалось..."); }	
+	$doc1 = new DOMDocument();
+	$doc1->loadXML($xmlString);
+	$response1 = $doc1->childNodes;
+	$response1 = $response1->item(0);
+	$resp_name1 = $response1->nodeName;	
+	$doc2 = new DOMDocument();
+	$doc2->loadXML($page);	
+	$response2 = $doc2->childNodes;
+	$response2 = $response2->item(0);
+	$resp_name2 = $response2->nodeName;	
+	if (($resp_name1 != 'response') && ($resp_name2 != 'response')) { exit(myf_inform_xml("По вашему запросу ничего нигде не найдено."));  }
+	if (($resp_name1 == 'response') && ($resp_name2 != 'response')) { exit($xmlString);  }
+	if (($resp_name1 != 'response') && ($resp_name2 == 'response')) { exit($page); }
+	if (($resp_name1 == 'response') && ($resp_name2 == 'response')) {		
+		$dom = new DOMDocument();
+		$response = $dom->createElement('response');
+		$dom->appendChild($response);	
+		$nextStaff = $response1->getElementsByTagName("nextStaff");
+		for ($i = $nextStaff->length; --$i >= 0; ) {
+			$el = $nextStaff->item($i);
+			$node = $dom->importNode($el, true);
+			$response->appendChild($node);
+		}
+		$nextStaff = $response2->getElementsByTagName("nextStaff");
+		for ($i = $nextStaff->length; --$i >= 0; ) {
+			$el = $nextStaff->item($i);
+			$node = $dom->importNode($el, true);
+			$response->appendChild($node);
+		}		
+		$functionHandler = $dom->createElement('functionHandler',$funct);
+		$response->appendChild($functionHandler);
+		$NewxmlString = $dom->saveXML();
+		exit($NewxmlString);
+	}
+}else{ exit($xmlString); }	
 ?>

@@ -1,10 +1,11 @@
 <?php
 header('Content-Type: text/XML');
+header(' Cache-Control: no-cache');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
 
-$funct = trim($_POST['functionHandler']);
-$deleteStaffId = trim($_POST['deleteStaffId']);
+$funct = trim($_GET['functionHandler']);
+$deleteStaffId = trim($_GET['deleteStaffId']);
 $dom = new DOMDocument();
 
 @ $db = new mysqli(HOST_NAME,USER_NAME,PASSWORD_NAME,DATABASE_NAME);

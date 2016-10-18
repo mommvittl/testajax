@@ -1,19 +1,20 @@
 <?php
 header('Content-Type: text/XML');
+header(' Cache-Control: no-cache');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
 
-$funct = trim($_POST['functionHandler']);
-$name = trim($_POST['name']);
-$surname = trim($_POST['surname']);
-$birth_day = trim($_POST['birth_day']);
-$adress = trim($_POST['adress']);
-$email = trim($_POST['email']);
-$telephon = trim($_POST['telephon']);
-$resume = trim($_POST['resume']);
-$departament = (int)trim($_POST['departament']);
-$position = trim($_POST['position']);
-$enrolment_data = trim($_POST['enrolment_data']);
+$funct = trim($_GET['functionHandler']);
+$name = trim($_GET['name']);
+$surname = trim($_GET['surname']);
+$birth_day = trim($_GET['birth_day']);
+$adress = trim($_GET['adress']);
+$email = trim($_GET['email']);
+$telephon = trim($_GET['telephon']);
+$resume = trim($_GET['resume']);
+$departament = (int)trim($_GET['departament']);
+$position = trim($_GET['position']);
+$enrolment_data = trim($_GET['enrolment_data']);
 
 @ $db = new mysqli(HOST_NAME,USER_NAME,PASSWORD_NAME,DATABASE_NAME);
 if (mysqli_connect_errno()) { exit(myf_err_xml("Не удалось соединиться с Базой данных")); }

@@ -11,7 +11,7 @@ function getFindStaff(){
 		var form = document.createElement('form');
 		form.className = "formFindAddStaff";
 		form.name = "formFindAddStaff";
-		form.innerHTML = '<h2>Внесите данные о сотруднике которые вы знаете</h2><hr><p><span>Укажите место поиска:</span><label><input type="radio" name="arealSearch" value="home" checked></input>только у себя</label><label><input type="radio" name="arealSearch" value="raund"></input>по свей компании</label></p>';
+		form.innerHTML = '<h2>Внесите данные о сотруднике которые вы знаете</h2><hr><p><span>Укажите место поиска:</span><label><input type="radio" name="arealSearch" value="home" checked></input>только у себя</label><label><input type="radio" name="arealSearch" value="raund"></input>по вcей компании</label></p>';
 		form.innerHTML += '<p><span>имя</span><input type="text" name="name" ></input></p>';
 		form.innerHTML += '<p><span>фамилия</span><input type="text" name="surname" ></input></p>';
 		form.innerHTML += '<p><span>дата рождения</span><input type="date" name="birth_day" ></input></p>';

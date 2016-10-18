@@ -35,6 +35,8 @@ function myf_get_staff_iftorm($funct,$db,$str_query,$fflag_er="1"){
 		$row = $result->fetch_assoc();
 		$staff = $dom->createElement('nextStaff');
 		$response->appendChild($staff);
+		$filial = $dom->createElement('filial','central');
+		$staff->appendChild($filial);
 		foreach($row as $key=>$val){
 			$new_element = $dom->createElement($key,$val);
 			$staff->appendChild($new_element);
@@ -46,4 +48,35 @@ function myf_get_staff_iftorm($funct,$db,$str_query,$fflag_er="1"){
 	return $xmlString;	
 }
 //---------------------------------------------------------------------------------
+//===================================================================================
+// $result = get_web_page( $url,$parametr,$uagent );
+//Ф-я посылает GET запрос на адрес $url.$parametr -  строка подготовленных параметров.
+//$uagent - необязательный адрес вызывающей стр.
+//Возвращает массив информации о последней операции. В массиве
+// $result['errno'] - код ошибки или 0 если все Ок.
+// $result['http_code'] - Последний полученный код HTTP.
+// $result['errmsg'] - строка с описанием последней ошибки
+// $result['content'] - контент, возвращенный по запросу 
+function get_web_page( $url,$parametr,$uagent = "none" ){
+  	if (strlen($parametr) >= 3 ) { $url .= "?" . $parametr; }	
+	$ch = curl_init( $url );
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);   // возвращает веб-страницу
+	curl_setopt($ch, CURLOPT_HEADER, 0);           // не возвращает заголовки
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);   // переходит по редиректам
+	curl_setopt($ch, CURLOPT_ENCODING, "");        // обрабатывает все кодировки
+	curl_setopt($ch, CURLOPT_USERAGENT, $uagent);  // useragent
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // таймаут соединения
+	curl_setopt($ch, CURLOPT_TIMEOUT, 120);        // таймаут ответа
+	curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
+	$content = curl_exec( $ch ); 
+	$err     = curl_errno( $ch );
+	$errmsg  = curl_error( $ch );
+	$header  = curl_getinfo( $ch );
+	curl_close( $ch );
+	$header['errno']   = $err;
+	$header['errmsg']  = $errmsg;
+	$header['content'] = $content;
+	return $header;
+}
+//------------------------------------------------------------------------------------------------
 ?>

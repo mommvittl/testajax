@@ -70,7 +70,7 @@ var intercep = document.getElementsByClassName('intercep');
 		var modalInformWindow = document.createElement('div');
 		modalInformWindow.innerHTML = "<h1>"+stringInform+"</h1>";
 		document.body.insertBefore(modalInformWindow, document.body.firstChild);
-		modalInformWindow.style.cssText="width:600px;max-width: 100%;height: 600px;max-height: 100%;cursor:pointer;padding:10px;background:#468CB5;color:#FFFFF0;text-align:center;font: 1em/2em arial;border: 4px solid #1E0D69;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);";
+		modalInformWindow.style.cssText="width:600px;max-width: 100%;height: 600px;max-height: 100%;cursor:pointer;padding:10px;background:#468CB5;color:#FFFFF0;text-align:center;font: 1em/2em arial;border: 4px solid #1E0D69;position:fixed;z-index: 1000;top:50%;left:50%;transform:translate(-50%, -50%);";
 		modalInformWindow.onclick = function(){
 			document.body.removeChild(modalInformWindow);
 		}
@@ -100,12 +100,13 @@ var intercep = document.getElementsByClassName('intercep');
 	function setAjaxQuery(theUrl,theParam){
 	if(myReq){
 		if(myReq.readyState == 4 || myReq.readyState == 0){
-			myReq.open("POST",theUrl,true);
+			theUrl += '?' + theParam;		
+			myReq.open("GET",theUrl,true);
 			myReq.onreadystatechange = getAjaxResponse;
-			myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			myReq.setRequestHeader("Content-length",theParam.length);
-			myReq.setRequestHeader("Connection","close");
-			myReq.send(theParam);
+//			myReq.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//			myReq.setRequestHeader("Content-length",theParam.length);
+//			myReq.setRequestHeader("Connection","close");
+			myReq.send(null);
 		}else{
 			setTimeout('setAjaxQuery()',1000);	
 		}
@@ -127,7 +128,7 @@ var intercep = document.getElementsByClassName('intercep');
 		if(myReq.status == 200){
 			var theXMLresponseDoc = myReq.responseXML;
 			if (!theXMLresponseDoc || !theXMLresponseDoc.documentElement) {
-				alert("Неверная структура XML." + myReq.responseText);
+				alert("Неверная структура XML.  " + myReq.responseText);
 			}else{
 				firstNodeName = theXMLresponseDoc.childNodes[0].tagName;
 				switch (firstNodeName) {

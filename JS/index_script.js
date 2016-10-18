@@ -14,17 +14,19 @@ deletePersonalStaff.onclick = getDeletePersonalStaff;
 var detailedNav = document.getElementById('detailedNav');
 detailedNav.hidden = true;
 var viewDetal = document.getElementById('viewDetal');
-//var viewAddStaff = document.getElementById('viewAddStaff');
-//viewAddStaff.hidden = true;
-
 var addFindWindow = document.getElementById('addFindWindow');
 addFindWindow.hidden = true;
-
 addFindWindow.setAttribute("destiny", "none");
 addFindWindow.getElementsByTagName('button')[0].onclick = function(){ addFindWindow.hidden = true; }
 var windowForForm = document.getElementById('windowForForm');
+var globalFilialName = 'central';
+var referenceStaffInfo;
 //=====DELETE===Staff======================================================
-function getDeletePersonalStaff(){		
+function getDeletePersonalStaff(){
+		if(document.getElementById('detailed').getAttribute("filial") != globalFilialName) { 
+			dispModalInformWindow("Error...<br>Нарушение прав доступа.<br>Вы не можете уволить сотрудника не своего филиала.");
+			return;	}
+		if (  globalFilialName)
 		var modal = document.createElement('div');  		
 		modal.innerHTML = "<h1>Вы уверены, что хотите уволить сотрудника?</h1><br><br><button id=\"ok_but\">OK</button><button id=\"cancel_but\" autofocus>Cancel</button></p>";
 		document.body.insertBefore(modal, document.body.firstChild);	
@@ -47,21 +49,75 @@ function getDeletePersonalStaff(){
 			detailedNav.hidden = true;		
 			};		
 };
-function viewDeletePersonalStaff(responseXMLDocument){
-	var detailed = document.getElementById('detailed');
-	alert("viewDeletePersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
-}
 //--------------------------------------------------------------
-
 //=====CHANGE==Staff=======================================================
 function getChangePersonalStaff(){
+	
+	var detailed = document.getElementById('detailed');
+	var filial = detailed.getAttribute("filial");
+	var id = detailed.getAttribute("idStaffSelect");
+//	alert("getChangePersonalStaff " + id + " " +filial);
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewChangePersonalStaff&searchList=change";	
+	var theParam = "functionHandler=viewChangePersonalStaff&searchList=change&id="+id+"&filial="+filial;	
 	setAjaxQuery(theUrl,theParam);	
 };
 function viewChangePersonalStaff(responseXMLDocument){
-	alert("viewChangePersonalStaff : "+responseXMLDocument.childNodes[0].textContent);	
+	addFindWindow.hidden = "";
+	windowForForm.innerHTML = "";
+	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];
+	var id = nextStaff.getElementsByTagName('id_staff')[0].textContent;
+	var name = nextStaff.getElementsByTagName('name')[0].textContent;	
+	var surname = nextStaff.getElementsByTagName('surname')[0].textContent;	
+	var title = nextStaff.getElementsByTagName('title')[0].textContent;
+	var position = nextStaff.getElementsByTagName('position')[0].textContent;	
+//	alert(id+name+surname+position+title);
+	windowForForm.setAttribute('idStaff', id) ;
+	var div = document.createElement('div');
+	div.className = "changePersonal";	
+	div.innerHTML = "<hr><h1>Окно первода сотрудника.</h1><p><span>Фамилия</span><span>"+surname+"</span></p>";
+	div.innerHTML +="<p><span>Имя</span><span>"+name+"</span></p>";
+	div.innerHTML += "<p><span>Отдел</span><span>"+title+"</span></p>";
+	div.innerHTML += "<p><span>Должность</span><span>"+position+"</span></p>";
+	div.innerHTML += "<h2>Куда переводить сотрудника:</h2>";
+	windowForForm.appendChild(div);
+	var form = document.createElement('form');
+	form.className = "changePersonal";	
+	form.name = "changeFormStaff";
+	form.innerHTML = "<input type='hidden' name='id_staff' value='"+id+"'></input>";
+	form.innerHTML += "<p><span>Отдел</span><select name='departament'  required></select></p>"
+	form.innerHTML += "<p><span>новая должность</span><input type='text' name='position'  required></input></p>";
+	form.innerHTML += '<p><span>Дата первода</span><input type="date" name="discharge_data"  required></input></p>';
+	form.innerHTML += "<p><input type='reset' name='butreset'></input><input type='submit' name='changeGo' value='перевести'></input></p>";		
+	div.appendChild(form);
+	setAjaxQuery("PHP/staff_list.php","functionHandler=changeOptionsToDepartament&searchList=optionsToSelect");		
 }
+function changeOptionsToDepartament(){
+	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
+	var departament = document.forms.changeFormStaff.elements.departament;	
+	for (var i = nextStaff.length -1; i >= 0 ; i--){
+		var option = document.createElement('option');
+		option.textContent = nextStaff[i].getElementsByTagName('title')[0].textContent;
+		option.value = nextStaff[i].getElementsByTagName('id_dep')[0].textContent;
+		departament.appendChild(option);
+	}
+	var changeFormStaff = document.forms.changeFormStaff;
+	changeFormStaff.onsubmit = changeFormSubmit;		
+}
+function changeFormSubmit(){
+	var theUrl = "PHP/change_staff.php";
+	var id = windowForForm.getAttribute('idStaff') ;
+	var theParam = "functionHandler=viewAddPersonalStaff&id_staff="+id;	
+	
+	for( var i = 0; i < document.forms.changeFormStaff.elements.length; i++){
+		var tagnm = document.forms.changeFormStaff.elements[i].name;
+		var tagdt = document.forms.changeFormStaff.elements[i].value;
+		theParam += "&" + tagnm + "=" + tagdt;		
+	}	
+	alert(theParam);
+//	setAjaxQuery(theUrl,theParam);	
+	addFindWindow.hidden = true;
+	return false;
+};
 //--------------------------------------------------------------
 
 //======GET===All===Staff==================================================
@@ -71,7 +127,7 @@ function getAllstaff(){
 	setAjaxQuery(theUrl,theParam);	
 };
 function viewAllstaff(responseXMLDocument){
-
+//	alert(myReq.responseText);
 	var total = document.getElementById('total');
 	total.innerHTML = "";
 	var table = document.createElement('table');
@@ -81,11 +137,13 @@ function viewAllstaff(responseXMLDocument){
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
 	for (var i = 0; i < nextStaff.length; i++){
 		var id = nextStaff[i].getElementsByTagName('id_staff')[0].textContent;
+		var filial = nextStaff[i].getElementsByTagName('filial')[0].textContent;
 		var row = document.createElement('tr');
 		row.className = "totalRowData";
 		row.onclick = getDetaliedStaffInfo;
-		row.setAttribute('idStaff', id) ;
+		row.setAttribute('idStaff', id) ;	
 		table.appendChild(row);
+		row.setAttribute('filial', filial) ;	
 		var td = document.createElement('td'); 
 		td.textContent = nextStaff[i].getElementsByTagName('surname')[0].textContent;
 		row.appendChild(td);
@@ -103,8 +161,9 @@ function viewAllstaff(responseXMLDocument){
 //========GET===Personal===Staff=============================================================================
 function getDetaliedStaffInfo(){
 	var id = this.getAttribute('idStaff');
+	var filial = this.getAttribute('filial');
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewDetaliedStaffInfo&searchList=personal&id="+id;	
+	var theParam = "functionHandler=viewDetaliedStaffInfo&searchList=personal&id="+id+"&filial="+filial;	
 	setAjaxQuery(theUrl,theParam);	
 };
 function viewDetaliedStaffInfo(responseXMLDocument){
@@ -113,16 +172,22 @@ function viewDetaliedStaffInfo(responseXMLDocument){
 	var tagsName = {'name':'Имя','surname':'Фамилия','birth_day':'Дата рождения','adress':'Дом.адрес','email':'Email','telephon':'контакт.телефон','resume':'резюме','position':'Должность','enrolment_data':'Принят на роботу','reference':'Характеристика','title':'Отдел'}
 	var detailed = document.getElementById('detailed');
 	detailed.innerHTML = "";
+	var idStaffSelect = responseXMLDocument.getElementsByTagName('id_staff')[0].textContent;
+	detailed.setAttribute("idStaffSelect", idStaffSelect);
+	var filialStaff = responseXMLDocument.getElementsByTagName('filial')[0].textContent;
+	detailed.setAttribute("filial", filialStaff);
+	var p = document.createElement('p');
+	p.className = "detailedFilialStaff"; 
+	detailed.appendChild(p);
+	p.textContent = "филиал сотрудника: " + filialStaff;
 	var table = document.createElement('table');
 	table.className = "detailedTable";
 	detailed.appendChild(table);
-	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];
-	var idStaffSelect = responseXMLDocument.getElementsByTagName('id_staff')[0].textContent;
-	detailed.setAttribute("idStaffSelect", idStaffSelect);
-//	alert(detailed.getAttribute("idStaffSelect") );
+	
+	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];	
 	for (var i = 0; i < nextStaff.childNodes.length; i++){		
 		var newTag = nextStaff.childNodes[i];
-		if(newTag.tagName != 'id_staff' && newTag.tagName != 'work'){
+		if(newTag.tagName != 'id_staff' && newTag.tagName != 'work' && newTag.tagName != 'filial'){
 			var row = document.createElement('tr');
 			row.className = "detailedRowData"; 
 			table.appendChild(row);
@@ -130,14 +195,29 @@ function viewDetaliedStaffInfo(responseXMLDocument){
 			td.textContent = tagsName[newTag.tagName];
 			row.appendChild(td);
 			var td = document.createElement('td'); 
-			td.textContent = newTag.textContent;
+			if( newTag.tagName == 'reference' ){	
+				referenceStaffInfo = newTag.textContent;
+				td.innerHTML = "<button type='button' onclick='viewReferenseStaff()'>показать в окне</button>";
+				td.className = "reference";
+			}else{
+				td.textContent = newTag.textContent;
+			}
 			row.appendChild(td);
-//			alert(newTag.tagName);
 		}
 		
 	}
 	
 }
+function viewReferenseStaff(){
+	addFindWindow.hidden = "";
+	windowForForm.innerHTML = "";
+	var p = document.createElement('p');
+	p.className = "viewReferenseStaff";
+	p.textContent = referenceStaffInfo; 	
+	windowForForm.appendChild(p);
+};
+
+
 //--------------------------------------------------------------
 //========GET====Departament==================================================
 function getDepartaments(){
