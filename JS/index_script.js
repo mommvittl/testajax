@@ -114,7 +114,7 @@ function changeFormSubmit(){
 		theParam += "&" + tagnm + "=" + tagdt;		
 	}	
 	alert(theParam);
-//	setAjaxQuery(theUrl,theParam);	
+	setAjaxQuery(theUrl,theParam);	
 	addFindWindow.hidden = true;
 	return false;
 };

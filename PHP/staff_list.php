@@ -23,7 +23,7 @@ switch ($searchList){
 		$str_query = "select staff_inform.id_staff,staff_inform.name,staff_inform.surname,staff_inform.birth_day, staff_inform.adress,
 		staff_inform.email,staff_inform.telephon,staff_inform.resume,staff_working.position,
 		staff_working.enrolment_data,staff_working.reference,departament.title	from staff_inform,staff_working,departament WHERE staff_inform.id_staff='".$id."' 
-		AND staff_working.id_worker = staff_inform.id_staff	AND staff_working.departament = departament.id_dep ;";
+		AND staff_working.id_worker = staff_inform.id_staff	AND staff_working.departament = departament.id_dep AND staff_working.discharge_data='0000-00-00' ;";
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);	
 		break;	
 	case 'prompting':
