@@ -3,7 +3,7 @@ findStaff.onclick = getFindStaff;
 
 //=======FIND===Staff====================================================
 function getFindStaff(){
-//	alert("findStaff");
+//	alert(  addFindWindow.getAttribute('destiny') );
 	addFindWindow.hidden = "";
 	if ( addFindWindow.getAttribute('destiny') != 'find') {  
 		windowForForm.innerHTML = "";

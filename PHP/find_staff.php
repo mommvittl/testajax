@@ -43,7 +43,8 @@ if($enrolment_data) {
 	list($year,$month,$day) = explode("-",$enrolment_data);
 	if(!checkdate($month,$day,$year)) { exit(myf_inform_xml("Проверьте правильность вводимых данных.<br>Некорректная дата приема на работу.")); }
 } 
-$str_query = "select staff_inform.* from staff_inform,staff_working WHERE 1 AND staff_inform.id_staff=staff_working.id_worker ";
+$str_query = "select staff_inform.* from staff_inform,staff_working WHERE 1 AND staff_inform.id_staff=staff_working.id_worker   ";
+
 if ($name) { $str_query .= " AND staff_inform.name like('%".$name."%') ";}
 if ($surname) { $str_query .= " AND staff_inform.surname like('%".$surname."%')";}
 if ($birth_day) { 
@@ -80,7 +81,7 @@ if ($enrolment_data) {
 	$str_query .= " AND staff_working.enrolment_data".$criterion_search."'".$enrolment_data."'";
 } 
 if ($worked == 'noworked') { $str_query .= " AND staff_inform.work='0' ORDER BY name;"; }	
-  else{  $str_query .= " AND work='1' ;";}
+  else{  $str_query .= " AND work='1'  AND staff_working.discharge_data='0000-00-00' ;";}
 if ($arealSearch == 'raund') { $fflag_er = "0"; }
   else {  $fflag_er = "1"; }
 $xmlString = myf_get_staff_iftorm($funct,$db,$str_query, $fflag_er);

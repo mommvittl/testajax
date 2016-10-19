@@ -27,8 +27,8 @@
 	<section class="detailed_list list_staff">
 	<div id="viewDetal">
 	<div id="detailedNav"><nav class="nav">
-		<span><span id="changePersonalStaff">перевод</span></span>
-		
+		<span><span id="historyPersonalStaff">премещения</span></span>
+		<span><span id="changePersonalStaff">перевод</span></span>		
 		<span><span id="deletePersonalStaff" class="intercep">увольнение</span></span>
 	</nav></div>
 	<div id="detailed" class="staf_info_wind">	
@@ -55,5 +55,8 @@
 <script src="JS/search_script.js"></script>	
 <script src="JS/find_script.js"></script>	
 <script src="JS/add_script.js"></script>	
+<script src="JS/change_script.js"></script>	
+<script src="JS/delete_script.js"></script>	
+<script src="JS/history_script.js"></script>	
 </BODY>
 </HTML>

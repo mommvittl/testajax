@@ -18,7 +18,7 @@ if (myf_find_staff($db,$deleteStaffId)){
 	$str_query = "UPDATE staff_inform SET work='0' WHERE id_staff='".$deleteStaffId."'";
 	$result = $db->query($str_query);
 	if(!$result){ exit(myf_err_xml("Не удалось соединиться с Базой данных 1")); } ;
-	$str_query = "UPDATE staff_working SET discharge_data='".$str_date."' WHERE id_worker='".$deleteStaffId."'";
+	$str_query = "UPDATE staff_working SET discharge_data='".$str_date."' WHERE id_worker='".$deleteStaffId."' AND discharge_data='0000-00-00'";
 	$result = $db->query($str_query);
 	if(!$result){ exit(myf_err_xml("Не удалось соединиться с Базой данных 2")); } ;
 	if (!$db->commit()){ exit(myf_err_xml("Не удалось соединиться с Базой данных 3")); }	

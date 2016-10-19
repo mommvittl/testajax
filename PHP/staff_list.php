@@ -15,14 +15,14 @@ $searchList = $db->real_escape_string($searchList);
  
 switch ($searchList){
 	case 'all':
-		$str_query = "select * from staff_inform WHERE work='1' order by surname;";
+		$str_query = "select * from staff_inform WHERE work='1' order by surname ;";
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
 		break;
 	case 'personal':
 		$id = (int)trim($_GET['id']);
 		$str_query = "select staff_inform.id_staff,staff_inform.name,staff_inform.surname,staff_inform.birth_day, staff_inform.adress,
 		staff_inform.email,staff_inform.telephon,staff_inform.resume,staff_working.position,
-		staff_working.enrolment_data,staff_working.reference,departament.title	from staff_inform,staff_working,departament WHERE staff_inform.id_staff='".$id."' 
+		staff_working.enrolment_data,departament.title,staff_working.reference	from staff_inform,staff_working,departament WHERE staff_inform.id_staff='".$id."' 
 		AND staff_working.id_worker = staff_inform.id_staff	AND staff_working.departament = departament.id_dep AND staff_working.discharge_data='0000-00-00' ;";
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);	
 		break;	
@@ -35,7 +35,7 @@ switch ($searchList){
 		case 'search':
 		$surnameSearch = trim($_GET['surnameSearch']);
 		$surnameSearch = $db->real_escape_string($surnameSearch);
-		$str_query = "select * from staff_inform WHERE work='1' AND surname like('".$surnameSearch."%')  order by surname;";
+		$str_query = "select * from staff_inform WHERE work='1' AND surname like('".$surnameSearch."%') order by surname;";
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
 		break;			
 	case 'optionsToSelect':
@@ -50,11 +50,18 @@ switch ($searchList){
 		$id = (int)trim($_GET['id']);		
 		$str_query = "select staff_inform.id_staff,staff_inform.name,staff_inform.surname,staff_working.position,departament.title 
 			from staff_inform,staff_working,departament 
-			WHERE staff_inform.work='1' AND staff_inform.id_staff=".$id." AND staff_working.id_worker = staff_inform.id_staff	
-			AND staff_working.departament = departament.id_dep ;";
-			
+			WHERE staff_inform.work='1' AND staff_inform.id_staff='".$id."' AND staff_working.id_worker = staff_inform.id_staff	
+			AND staff_working.departament = departament.id_dep AND staff_working.discharge_data='0000-00-00' ;";			
 		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
-		break;	
+		break;
+	case 'history':
+		$id = (int)trim($_GET['id']);
+		$str_query = "select staff_inform.name,staff_inform.surname,departament.title,staff_working.position,
+		staff_working.enrolment_data,staff_working.discharge_data  from staff_inform,staff_working,departament 
+		WHERE staff_inform.id_staff='".$id."' AND staff_working.id_worker = staff_inform.id_staff	AND staff_working.departament = departament.id_dep  ;";
+		$xmlString = myf_get_staff_iftorm($funct,$db,$str_query);
+		break;
+	
 	default :
 		$xmlString = myf_inform_xml("Неопределенный запрос. Нужно подготовить
 			соответствующую функцию обработки...");
