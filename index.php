@@ -49,7 +49,7 @@
 	
 		</div>
 	</div>
-	<iframe id="upload_frame" name="upload_frame" width="468" height="30" style="display: none"></iframe>';	
+	<iframe id="upload_frame" name="upload_frame"  style="width:0px; height:0px; border: 0px"></iframe>';	
 	</div>  
 <script src="JS/my_js_library.js"></script>	
 <script src="JS/index_script.js"></script>	

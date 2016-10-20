@@ -88,7 +88,7 @@ function viewAddPersonalStaff(){
 	var formAddFileStaff = document.forms.formAddFileStaff.elements.fileGo;	
 	var event = new Event("click");
 	formAddFileStaff.dispatchEvent(event);	
-	
+	dispModalInformWindow('новый сотрудник добавлен в базу дааных');
 	
 };
 //--------------------------------------------------------------

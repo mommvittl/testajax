@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/XML');
-header(' Cache-Control: no-cache');
+header('Cache-Control: no-cache');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
 
