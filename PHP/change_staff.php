@@ -37,13 +37,7 @@ $db->autocommit(FALSE);
 	exit(myf_inform_xml("Сотрудник успешно переведен")); 
 
 //--------------------------------------------------------------------------------------------------
-//проверка наличия переданного id в БД. Возврат true/false
-function myf_search_id($db,$id_staff){
-	$str_query = "select count(*) from staff_inform WHERE work='1' AND id_staff='".$id_staff."' ;";
-	$result = $db->query($str_query);
-	list($col) = $result->fetch_row();
-	return ($col)?true:false;
-}
+
 //проверка наличия переданного департамента в БД. Возврат true/false
 function myf_search_departament($db,$departament){
 	$str_query = "select count(*) from departament WHERE id_dep='".$departament."' ;";

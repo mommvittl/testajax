@@ -48,7 +48,8 @@
 		<div id="windowForForm" class="windowForForm">
 	
 		</div>
-	</div>	
+	</div>
+	<iframe id="upload_frame" name="upload_frame" width="468" height="30" style="display: none"></iframe>';	
 	</div>  
 <script src="JS/my_js_library.js"></script>	
 <script src="JS/index_script.js"></script>	

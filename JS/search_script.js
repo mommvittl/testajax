@@ -13,7 +13,7 @@ function searchFormInputData(){
 	var searchDataValue = searchData.value;
 	if (searchDataValue.length > 0){
 		var theUrl = "PHP/staff_list.php";
-		var theParam = "functionHandler=viewSearchPrompting&searchList=prompting&searchValue=" + searchDataValue;	
+		var theParam = "functionHandler=viewSearchPrompting&searchList=prompting&searchValue=" + encodeURIComponent(searchDataValue);	
 		setAjaxQuery(theUrl,theParam);
 	}
 }
@@ -49,7 +49,7 @@ function searchFormSubmit(){
 	var searchDataValue = searchData.value;
 	searchData.value = "";	
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewAllstaff&searchList=search&surnameSearch="+searchDataValue;	
+	var theParam = "functionHandler=viewAllstaff&searchList=search&surnameSearch=" + encodeURIComponent(searchDataValue);	
 	setAjaxQuery(theUrl,theParam);		
 	return false;
 }

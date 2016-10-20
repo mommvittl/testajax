@@ -15,6 +15,20 @@ function myf_inform_xml($str_inform){
 	$xmlInformStr = $dom_inform->saveXML();
 	return $xmlInformStr;
 }
+//проверка наличия переданного id в БД. Возврат true/false
+function myf_search_id($db,$id_staff){
+	$str_query = "select count(*) from staff_inform WHERE work='1' AND id_staff='".$id_staff."' ;";
+	$result = $db->query($str_query);
+	list($col) = $result->fetch_row();
+	return ($col)?true:false;
+}
+//ф-я занесения изменений в записи базы дааных
+//возвращает true/false
+function myf_update_data($db,$str_query){
+	$result = $db->query($str_query);
+	return ($result)?true:false;
+}
+//-------------------------------------------------
 //=================================================================================
 //ф-я получения результата поиска и формирования из него xml документа для 
 //возврата клиенту. В случае ошибок возвращает <error> или <underreporting>
@@ -27,7 +41,7 @@ function myf_get_staff_iftorm($funct,$db,$str_query,$fflag_er="1"){
 	$response = $dom->createElement('response');
 	$dom->appendChild($response);	
 	$result = $db->query($str_query);
-	if(!$result  && $fflag_er){ return(myf_err_xml("Не удалось соединиться с Базой данных 1")); } ;
+	if(!$result  && $fflag_er){ return(myf_err_xml("Не удалось соединиться с Базой данных function")); } ;
 	$num_rows = $result->num_rows;
 	if(!$num_rows  && $fflag_er){ return(myf_inform_xml("По вашему запросу в базе данных 
 		ничего не найдено.")); }	
@@ -68,6 +82,37 @@ function get_web_page( $url,$parametr,$uagent = "none" ){
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // таймаут соединения
 	curl_setopt($ch, CURLOPT_TIMEOUT, 120);        // таймаут ответа
 	curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
+	$content = curl_exec( $ch ); 
+	$err     = curl_errno( $ch );
+	$errmsg  = curl_error( $ch );
+	$header  = curl_getinfo( $ch );
+	curl_close( $ch );
+	$header['errno']   = $err;
+	$header['errmsg']  = $errmsg;
+	$header['content'] = $content;
+	return $header;
+}
+//------------------------------------------------------------------------------------------------//===================================================================================
+// $result = get_web_page( $url,$parametr,$uagent );
+//Ф-я посылает POST запрос на адрес $url.$parametr -  строка подготовленных параметров.
+//$uagent - необязательный адрес вызывающей стр.
+//Возвращает массив информации о последней операции. В массиве
+// $result['errno'] - код ошибки или 0 если все Ок.
+// $result['http_code'] - Последний полученный код HTTP.
+// $result['errmsg'] - строка с описанием последней ошибки
+// $result['content'] - контент, возвращенный по запросу 
+function get_web_page_post( $url,$parametr,$uagent = "none" ){
+	$ch = curl_init( $url );
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);   // возвращает веб-страницу
+	curl_setopt($ch, CURLOPT_HEADER, 0);           // не возвращает заголовки
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);   // переходит по редиректам
+	curl_setopt($ch, CURLOPT_ENCODING, "");        // обрабатывает все кодировки
+	curl_setopt($ch, CURLOPT_USERAGENT, $uagent);  // useragent
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // таймаут соединения
+	curl_setopt($ch, CURLOPT_TIMEOUT, 120);        // таймаут ответа
+	curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $parametr);
 	$content = curl_exec( $ch ); 
 	$err     = curl_errno( $ch );
 	$errmsg  = curl_error( $ch );

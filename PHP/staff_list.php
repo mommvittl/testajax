@@ -6,7 +6,7 @@ require_once("php_user_funktion.php");
 
 @ $db = new mysqli(HOST_NAME,USER_NAME,PASSWORD_NAME,DATABASE_NAME);
 if (mysqli_connect_errno()) { 
-	exit(myf_err_xml("Не удалось соединиться с Базой данных"));
+	exit(myf_err_xml("Не удалось соединиться с Базой данных staff_list"));
 }
 $funct = trim($_GET['functionHandler']);
 $searchList = trim($_GET['searchList']);

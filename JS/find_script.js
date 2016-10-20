@@ -68,9 +68,9 @@ function findFormSubmit(){
 	var theParam = "functionHandler=viewAllstaff";	
 	for( var i = 0; i < document.forms.formFindAddStaff.elements.length; i++){
 		var newElemForm = document.forms.formFindAddStaff.elements[i];
-		if (newElemForm.type != "radio" ){theParam += "&" + newElemForm.name + "=" + newElemForm.value;}	
+		if (newElemForm.type != "radio" ){theParam += "&" + newElemForm.name + "=" + encodeURIComponent(newElemForm.value);}	
 		if (newElemForm.type == "radio" && newElemForm.checked == true){
-			theParam += "&" + newElemForm.name + "=" + newElemForm.value;
+			theParam += "&" + newElemForm.name + "=" + encodeURIComponent(newElemForm.value);
 		}	
 	}	
 	setAjaxQuery(theUrl,theParam);
