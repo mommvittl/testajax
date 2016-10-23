@@ -83,12 +83,21 @@ function viewAddPersonalStaff(){
 //	alert("viewAddPersonalStaff id=" + id);
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
 	var id = nextStaff[0].getElementsByTagName('id_staff')[0].textContent;
-	document.forms.formAddFileStaff.elements.id_staff.value = id;
-	
+	document.forms.formAddFileStaff.elements.id_staff.value = id;	
 	var formAddFileStaff = document.forms.formAddFileStaff.elements.fileGo;	
 	var event = new Event("click");
-	formAddFileStaff.dispatchEvent(event);	
-	dispModalInformWindow('новый сотрудник добавлен в базу дааных');
-	
+	formAddFileStaff.dispatchEvent(event);		
 };
 //--------------------------------------------------------------
+function process(){
+	var iframe = document.getElementsByTagName('iframe')[0];
+	var iframeDoc = iframe.contentWindow.document.body.textContent;
+	dispModalInformWindow(iframeDoc);	
+};
+
+
+
+
+
+
+

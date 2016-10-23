@@ -101,8 +101,9 @@ function get_web_page( $url,$parametr,$uagent = "none" ){
 // $result['http_code'] - Последний полученный код HTTP.
 // $result['errmsg'] - строка с описанием последней ошибки
 // $result['content'] - контент, возвращенный по запросу 
-function get_web_page_post( $url,$parametr,$uagent = "none" ){
+function get_web_page_post( $url,$parametr,$uagent = "none",$headers = false ){
 	$ch = curl_init( $url );
+	if ($headers){ curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);} // Добавляем массив заголовков
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);   // возвращает веб-страницу
 	curl_setopt($ch, CURLOPT_HEADER, 0);           // не возвращает заголовки
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);   // переходит по редиректам

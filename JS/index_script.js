@@ -149,6 +149,9 @@ function viewDirectors(responseXMLDocument){
 	alert("viewDirectors : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
-
+function process(){
+	alert("process");
+	
+};
 
 

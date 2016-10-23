@@ -73,6 +73,7 @@ var intercep = document.getElementsByClassName('intercep');
 		modalInformWindow.style.cssText="width:600px;max-width: 100%;height: 600px;max-height: 100%;cursor:pointer;padding:10px;background:#468CB5;color:#FFFFF0;text-align:center;font: 1em/2em arial;border: 4px solid #1E0D69;position:fixed;z-index: 1000;top:50%;left:50%;transform:translate(-50%, -50%);";
 		modalInformWindow.onclick = function(){
 			document.body.removeChild(modalInformWindow);
+			
 		}
 	};
 //----------------------------------------------------------------	
