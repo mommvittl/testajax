@@ -1,6 +1,5 @@
 //====основная======часть=======================================
-var structure =  document.getElementById('structure');
-structure.onclick = getStructure;
+
 var directors =  document.getElementById('directors');
 directors.onclick = getDirectors;
 var departaments =  document.getElementById('departaments');
@@ -75,18 +74,28 @@ function viewDetaliedStaffInfo(responseXMLDocument){
 	detailed.setAttribute("idStaffSelect", idStaffSelect);
 	var filialStaff = responseXMLDocument.getElementsByTagName('filial')[0].textContent;
 	detailed.setAttribute("filial", filialStaff);
-	var p = document.createElement('p');
-	p.className = "detailedFilialStaff"; 
-	detailed.appendChild(p);
-	p.textContent = "филиал сотрудника: " + filialStaff;
+	var foto = responseXMLDocument.getElementsByTagName('foto')[0].textContent;
+//	var p = document.createElement('p');
+//	p.className = "detailedFotoStaff"; 
+//	p.innerHTML = ;
+//	detailed.appendChild(p);
+	var div = document.createElement('div');
+	div.className = "detailedFotoStaff clearfix"; 
+	detailed.appendChild(div);
+	div.innerHTML = "<img src='STAFF_FOTO/"+foto+"' alt='staff foto'>филиал сотрудника: " + filialStaff ;
+	
+
 	var table = document.createElement('table');
 	table.className = "detailedTable";
 	detailed.appendChild(table);
 	
-	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];	
+	
+	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];
+	
 	for (var i = 0; i < nextStaff.childNodes.length; i++){		
 		var newTag = nextStaff.childNodes[i];
-		if(newTag.tagName != 'id_staff' && newTag.tagName != 'work' && newTag.tagName != 'filial'){
+		
+		if(newTag.tagName != 'id_staff' && newTag.tagName != 'work' && newTag.tagName != 'filial' && newTag.tagName != 'foto'){
 			var row = document.createElement('tr');
 			row.className = "detailedRowData"; 
 			table.appendChild(row);

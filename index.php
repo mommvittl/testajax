@@ -47,7 +47,7 @@
 			<div id="windowForForm" class="windowForForm">	
 			</div>
 		</div>
-		<iframe id="upload_frame" name="upload_frame"  style="width:0px; height:0px; border: 0px" onload="process()"></iframe>';	
+		<iframe id="upload_frame" name="upload_frame"  style="width:0px; height:0px; border: 0px" onload="process()"></iframe>	
 	</div>  
 <script src="JS/my_js_library.js"></script>	
 <script src="JS/index_script.js"></script>	
@@ -57,5 +57,6 @@
 <script src="JS/change_script.js"></script>	
 <script src="JS/delete_script.js"></script>	
 <script src="JS/history_script.js"></script>	
+<script src="JS/structure_script.js"></script>	
 </BODY>
 </HTML>

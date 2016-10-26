@@ -29,11 +29,12 @@ p { word-wrap: break-word;}
 body { background:#FDF5E6; position: relative; }
 h1 { font: 1.5em/1.2em Arial; text-align: center; }
 /* пользовательские стили */
+.clearfix:after { content: " "; display: table; width: 100%; clear: both;}
 .out_div { width: 100%; max-width: 1200px; margin: 0 auto;}
 .out_div header { padding: 10px; height: 100px; background: url(../IMG/header_logo.jpg) center center / cover  ; }
 .out_div h1 { font: 1.5em/1.6em arial; color: #FAEBD7; }
 .list_staff {   width: calc(50% - 5px); margin-top: 5px; }
-.staf_info_wind { max-height: 75vh; overflow: auto; border: 2px solid #A88808; }
+.staf_info_wind { max-height: 75vh; overflow: auto; border: 2px solid #A88808; background: A88808;}
 .detailed_list { float: left;  }
 .total_list {  float: right;  }
 .nav { display: table-row; width: 100%; text-align: justify; background: #DEB887; cursor: pointer;}
@@ -60,6 +61,8 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .globalSearch input[type="submit"] {height: 30px; width: 60px; border: none; outline: none; border-radius: 0 12px 12px 0; color: white; background: gray;  margin: 0; }
 
 .detailedFilialStaff { text-align: center; color: #FFFACD; background: #A88808; font: 1em/1.2em arial; }
+.detailedFotoStaff { background: #A88808; text-align: left; font: 1.5em/1.7em arial;  color: #FFFACD;text-align: center; vertical-align: middle;}
+.detailedFotoStaff > img { display: inline-block; width: 140px; height: 150px; float: right;}
 .totalTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; }
 .totalTable th { color: #EEDC93 ; font: 1em/1.2em arial;  }
 .totalRowData td { cursor: pointer; background: #FCF0BE; color: #262007; padding: 3px; vertical-align: middle;  }
@@ -92,7 +95,7 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .formFindAddStaff  > p > span { display: inline-block; width: 300px; text-align: right; padding: 0 6px; font: 1em/1.2em arial;
 	color: #D3D997;} 
 .formFindAddStaff input[type="radio"] {  width: auto;  }
-.windowForForm {  max-height: 60vh; overflow: auto;  clear: both; min-height: 50vh;   }
+.windowForForm {  max-height: 80vh; overflow: auto;  clear: both; min-height: 50vh;   }
 
 .changePersonal   {  font: 1.2em/1.4em arial;    }
 .changePersonal p span { display: inline-block; width: 50%; padding: 10px;}
