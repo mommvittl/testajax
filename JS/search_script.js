@@ -15,13 +15,17 @@ function searchFormInputData(){
 		var theUrl = "PHP/staff_list.php";
 		var theParam = "functionHandler=viewSearchPrompting&searchList=prompting&searchValue=" + encodeURIComponent(searchDataValue);	
 		setAjaxQuery(theUrl,theParam);
+	}else{ 
+		promptingWindow.hidden = true;
 	}
 }
 //-----------------------------------------------------------------
 function viewSearchPrompting(responseXMLDocument){
 	promptingWindow.innerHTML = "";	
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff');
-	if(nextStaff.length > 0) { promptingWindow.hidden = ""; };
+	if(nextStaff.length > 0){ 
+		promptingWindow.hidden = ""; 
+	}else{ promptingWindow.hidden = true; }
 	for (var i = 0; i < nextStaff.length; i++){
 		var id = nextStaff[i].getElementsByTagName('id_staff')[0].textContent;
 		var staffName = nextStaff[i].getElementsByTagName('name')[0].textContent;

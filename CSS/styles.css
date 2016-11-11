@@ -61,7 +61,7 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .globalSearch input[type="submit"] {height: 30px; width: 60px; border: none; outline: none; border-radius: 0 12px 12px 0; color: white; background: gray;  margin: 0; }
 
 .detailedFilialStaff { text-align: center; color: #FFFACD; background: #A88808; font: 1em/1.2em arial; }
-.detailedFotoStaff { background: #A88808; text-align: left; font: 1.5em/1.7em arial;  color: #FFFACD;text-align: center; vertical-align: middle;}
+.detailedFotoStaff { background: #A88808; text-align: left; font: 1.5em/1.7em arial;  color: #FFFACD;text-align: center; vertical-align: middle; padding: 8px;}
 .detailedFotoStaff > img { display: inline-block; width: 140px; height: 150px; float: right;}
 .totalTable { background: #A88808;  border-spacing: 2px; width: 100%; padding: 5px; }
 .totalTable th { color: #EEDC93 ; font: 1em/1.2em arial;  }
@@ -107,6 +107,8 @@ h1 { font: 1.5em/1.2em Arial; text-align: center; }
 .changePersonal input[type="submit"] { background: #CA4F30; color: #fff; float: right; margin-right: 30px;  padding: 5px 20px;} 	
 
 .viewReferenseStaff { color: #FFFACD; padding: 10px; }
+.structureUlout { padding: 5vw;  background: #DCF2CB; color: #2F3828; border-radius: 10px;}
+.structureLi { margin-bottom: 5px;}
 //-------------------------------------------------
 
 

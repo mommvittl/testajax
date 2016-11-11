@@ -1,6 +1,9 @@
 <?php
 header('Content-Type: text/XML');
-header(' Cache-Control: no-cache');
+header('Expires: Fri, 25 Dec 1980 00:00:00 GMT'); 
+header('Last-Modified: ' . gmdate( 'D, d M Y H:i:s') . 'GMT');
+header('Cache-Control: no-cache, must-revalidate'); 
+header('Pragma: no-cache');
 require_once("app_config.php");
 require_once("php_user_funktion.php");
 $funct = trim($_GET['functionHandler']);
@@ -34,9 +37,6 @@ for($i=0; $i<$num_rows; $i++){
 		$dt = $par ." = ".$child;
 		
 }
-
-
-
 $ier = [];
 foreach($page as $key=>$val){
 	if($key == $val){ $start = $key;  }
@@ -82,5 +82,10 @@ function myf_three($ier,$page,$arr) {
 		}else{ $new_el[$val] = $val; }		
 	}
 	return $new_el;
-}	
+}
 ?>
+
+
+
+
+

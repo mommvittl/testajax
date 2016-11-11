@@ -4,6 +4,7 @@ var directors =  document.getElementById('directors');
 directors.onclick = getDirectors;
 var departaments =  document.getElementById('departaments');
 departaments.onclick = getDepartaments;
+
 var allStaff =  document.getElementById('allStaff');
 allStaff.onclick = getAllstaff;
 
@@ -75,21 +76,21 @@ function viewDetaliedStaffInfo(responseXMLDocument){
 	var filialStaff = responseXMLDocument.getElementsByTagName('filial')[0].textContent;
 	detailed.setAttribute("filial", filialStaff);
 	var foto = responseXMLDocument.getElementsByTagName('foto')[0].textContent;
-//	var p = document.createElement('p');
-//	p.className = "detailedFotoStaff"; 
-//	p.innerHTML = ;
-//	detailed.appendChild(p);
 	var div = document.createElement('div');
 	div.className = "detailedFotoStaff clearfix"; 
 	detailed.appendChild(div);
 	div.innerHTML = "<img src='STAFF_FOTO/"+foto+"' alt='staff foto'>филиал сотрудника: " + filialStaff ;
-	
-
+	var name = responseXMLDocument.getElementsByTagName('name')[0].textContent;
+	var surname = responseXMLDocument.getElementsByTagName('surname')[0].textContent;
+	var p = document.createElement('p');
+	p.textContent = responseXMLDocument.getElementsByTagName('name')[0].textContent;
+	div.appendChild(p);
+	var p = document.createElement('p');
+	p.textContent = responseXMLDocument.getElementsByTagName('surname')[0].textContent;
+	div.appendChild(p);
 	var table = document.createElement('table');
 	table.className = "detailedTable";
-	detailed.appendChild(table);
-	
-	
+	detailed.appendChild(table);	
 	var nextStaff = responseXMLDocument.getElementsByTagName('nextStaff')[0];
 	
 	for (var i = 0; i < nextStaff.childNodes.length; i++){		
@@ -131,36 +132,20 @@ function viewReferenseStaff(){
 //========GET====Departament==================================================
 function getDepartaments(){
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewDepartaments&searchList=personal";	
+	var theParam = "functionHandler=viewDepartaments&searchList=departament";	
 	setAjaxQuery(theUrl,theParam);	
 };
 function viewDepartaments(responseXMLDocument){
 	alert("viewDepartaments : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
-//=========GET====Structure=================================================
-function getStructure(){
-	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewStructure&searchList=personal";	
-	setAjaxQuery(theUrl,theParam);	
-};
-function viewStructure(responseXMLDocument){
-	alert("viewStructure : "+responseXMLDocument.childNodes[0].textContent);	
-}
-//--------------------------------------------------------------
 //=======GET===Director====================================================
 function getDirectors(){
 	var theUrl = "PHP/staff_list.php";
-	var theParam = "functionHandler=viewDirectors&searchList=personal";	
+	var theParam = "functionHandler=viewDirectors&searchList=directors";	
 	setAjaxQuery(theUrl,theParam);	
 };
 function viewDirectors(responseXMLDocument){
 	alert("viewDirectors : "+responseXMLDocument.childNodes[0].textContent);	
 }
 //--------------------------------------------------------------
-function process(){
-	alert("process");
-	
-};
-
-
